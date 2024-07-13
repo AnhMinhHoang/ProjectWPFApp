@@ -1,0 +1,77 @@
+﻿<Window x:Class="ProjectWPFApp.ProjectDetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectWPFApp"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen"
+        Title="ProjectDetail" Height="600" Width="800" Background="#222425">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="700"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="1" FontWeight="Bold" FontSize="30" Foreground="White" HorizontalAlignment="Center">ProjectDetail</Label>
+        
+        <StackPanel Grid.Column="1" Grid.Row="1">
+            <Label x:Name="label2" Margin="2, 2, 2, 2" Content="EmployeeID" Foreground="White"/>
+            <TextBox x:Name="txtEmployeeID" Margin="4, 4, 4, 4" Text="" TextWrapping="Wrap"/>
+
+            <Label x:Name="label8" Margin="2, 2, 2, 2" Content="ProjectID" Foreground="White"/>
+            <TextBox x:Name="txtProjectID" Margin="4, 4, 4, 4" Text="" TextWrapping="Wrap"/>
+            <Label x:Name="label3" Margin="2, 2, 2, 2" Content="Role" Foreground="White"/>
+            <TextBox x:Name="txtRole" Margin ="4,4,4,4" Text="" TextWrapping="Wrap"  />
+        </StackPanel>
+        <DataGrid x:Name="dgData" Margin="4, 4, 4, 63" Grid.Column="1" CanUserAddRows="False" CanUserResizeRows="False" Background="Transparent" BorderThickness="0"
+          Grid.Row="2" ItemsSource="{Binding CollectionView, UpdateSourceTrigger=PropertyChanged}" 
+          SelectionChanged="dgData_SelectionChanged" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Employee Name">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Employee.EmployeeName}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Project Name">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Project.ProjectName}"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Role" Binding="{Binding Role}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="1">
+            <Button x:Name="employee" Content="Employee" HorizontalAlignment="Left" Width="80" 
+        Background="AntiqueWhite" Foreground="Black" Click="employee_Click"/>
+            <Button x:Name="project" Content="Project" HorizontalAlignment="Left" Width="80" 
+                    Margin="0, 10, 0 0" 
+        Background="AntiqueWhite" Foreground="Black" Click="project_Click"/>
+        </StackPanel>
+        <DockPanel Grid.Column="1" Grid.Row="3">
+            <Button  x:Name="btnCreate" Content="Create" HorizontalAlignment="Left"  
+         Width="121" Margin="0, 0, 20, 0"
+        Background="AntiqueWhite" BorderBrush="White" Foreground="Black" 
+                     Click="btnCreate_Click"/>
+            <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" 
+        Width="121" Background="AntiqueWhite" Margin="0, 0, 20, 0"
+        Foreground="Black" Click="btnUpdate_Click"/>
+            <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" 
+        Width="121" Grid.Column="1" Grid.Row="3" Margin="0, 0, 20, 0"
+        Foreground="Black" Background="AntiqueWhite" Click="btnDelete_Click"/>
+            <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" 
+        Width="121" Margin="0, 0, 20, 0"
+        Background="AntiqueWhite" Foreground="Black" Click="btnClose_Click"/>
+        </DockPanel>
+    </Grid>
+</Window>
